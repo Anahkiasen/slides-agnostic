@@ -2,6 +2,8 @@
 	%h1 Benefits and pitfalls of agnostic packages
 	%h2 and stuff
 
+	%aside.notes Worked on a few packages myself
+
 %section
 	%h2 Who am I?
 	%img{:src => 'images/09.jpg'}
@@ -14,7 +16,7 @@
 	%aside.notes
 		%ul
 			%li First of all a quick look never worked with me before
-			%li My name is Maxime Fabre
+			%li My name is Maxime Fabre, how it's pronounced
 			%li I'm french, most important thing
 			%li In the middle age thingy
 			%li Here since about a year
@@ -40,15 +42,25 @@
 	%h1 (Framework) Agnostic packages
 	%ol
 		%li.fragment Packages that do not believe in one single framework.
-		%li.fragment Most packages are. Or not. I don't have any stats, really.
+		%li.fragment Most packages aren't. I think. I don't have any stats, really.
 		%li.fragment Multiple ways to achieve agnosticism (patterns)
+
+	%aside.notes
+		%ul
+			%li Never heard the term, here comes
+			%li Don't know, mostly symfony bundles
+			%li Multiple ways, we'll review them
 
 %section
 	%p More importantly<br>Agnostic is most of the cases the <strong>right way</strong> to do packages
 
+	%aside.notes There are exceptions. Not thinking outside box
+
 %section
 	%h1 Benefits
 	%img{:src => 'images/benefits.png'}
+
+	%aside.notes Wonderful image found GI
 
 %section
 	%h1 The obvious ones
@@ -61,6 +73,14 @@
 		%li.fragment Not locked to a framework's release cycle
 		%li.fragment "wow much package very agnostic"
 
+	%aside.notes
+		%ul
+			%li CB you do care for, test on them, can't unit test, major ones
+			%li SD don't know, fingers crossed
+			%li Rest microframeworks/components etc
+			%li Not locked Laravel 4.1/4.2 type hint
+			%li brag r/php
+
 %section
 	%h1 The totally-not-obvious-but-still-kind-of-nice ones
 	%ol
@@ -70,6 +90,13 @@
 		%li.fragment
 			Being a strong independent tax-paying citizen
 			%img{src: 'images/independence.jpg'}
+
+	%aside.notes
+		%ul
+			%li Can't rely on transports or classes
+			%li Have to learn how works (sessions etc)
+			%li mix match packages
+			%li do your own thing
 
 %section
 	%h1	Pitfalls
@@ -85,6 +112,13 @@
 			Dependencies conflicts. All the time.
 			%span.fragment ALL THE FUCKING TIME.
 
+	%aside.notes
+		%ul
+			%li A lot more time
+			%li Sessions etc, classes to bind on
+			%li relying on features you think most frameworks have
+			%li Dependencies symfony laravel
+
 %section
 	%h1 Cool story bro
 	%h2 but how?
@@ -92,7 +126,7 @@
 %section
 	%h1 Requirements
 	%ol
-		%li
+		%li.fragment
 			%span Namespaces
 			%span.fragment Symfony\Foundation\How\The\Fuck\Do\People\Even\Remember\All\That
 		%li.fragment PSR all the things.
@@ -125,8 +159,8 @@
 	%p.fragment Building something that works for the ground up, and adding adaptators for the various frameworks
 
 %section
-	%h2 Example: service providers
-	%p.fragment Make your package work as is by just creating an instance, then add service providers that hooks those services into the framework
+	%h2 Service providers
+	%p.fragment Make your package work as is by just creating an instance, then add service providers that hook those services into the framework
 	%pre.fragment
 		%code
 			:plain
@@ -136,8 +170,8 @@
 					{
 						$this->package('vendor/package');
 
-						$this->app->singleton('command', 'Vendor\Package\MyCommand');
-						$this->commands('command');
+						$this->app->singleton('migrate', 'Vendor\Package\MigrateCommand');
+						$this->commands('migrate');
 					}
 				}
 
@@ -148,3 +182,4 @@
 	%div.fragment
 		%h2 Or decicated repositories
 		%img{:src => 'images/repositories.png'}
+

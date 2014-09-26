@@ -4,6 +4,7 @@ module.exports = function(grunt) {
 	grunt.loadNpmTasks('grunt-shell');
 
 	grunt.initConfig({
+
 		shell: {
 			reveal: {
 				command: 'reveal-ck generate',
@@ -18,6 +19,9 @@ module.exports = function(grunt) {
 				tasks: 'shell:reveal',
 			},
 		}
+
 	});
+
+	grunt.registerTask('default', ['watch']);
 
 };

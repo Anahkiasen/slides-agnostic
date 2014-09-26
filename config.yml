@@ -5,3 +5,4 @@ title:      "Benefits and pitfalls of agnostic packages"
 revealjs_config:
   controls: false
   slideNumber: true
+  history: true

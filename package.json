@@ -1,0 +1,17 @@
+{
+  "name": "slides-agnostic",
+  "version": "1.0.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Anahkiasen/slides-agnostic.git"
+  },
+  "author": "Maxime Fabre",
+  "dependencies": {
+    "grunt": "^0.4.5",
+    "grunt-cli": "^0.1.13"
+  },
+  "devDependencies": {
+    "grunt-contrib-watch": "^0.6.1",
+    "grunt-shell": "^1.1.1"
+  }
+}

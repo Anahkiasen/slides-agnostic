@@ -1,16 +1,10 @@
 # Benefits and pitfalls of agnostic packages
 ## and stuff
 
-```note
-Test
-```
-
 ---
 
-## Second slide
+## Who am I?
 
-> Best quote ever.
-
-```note
-speaker notes FTW!
-```
+- Maxime Fabre
+- French *(hon hon hon baguette)*
+- 24 years old

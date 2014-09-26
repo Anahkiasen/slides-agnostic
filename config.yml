@@ -1,0 +1,7 @@
+theme:      "default"
+author:     "Maxime Fabre"
+transition: "concave"
+title:      "Benefits and pitfalls of agnostic packages"
+revealjs_config:
+  controls: false
+  slideNumber: true

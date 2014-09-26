@@ -66,3 +66,85 @@
 	%ol
 		%li.fragment Intrinsinc respect of the SRP principles
 		%li.fragment Better understanding of how the various frameworks work
+		%li.fragment Use whatever package you want as foundation
+		%li.fragment
+			Being a strong independent tax-paying citizen
+			%img{src: 'images/independence.jpg'}
+
+%section
+	%h1	Pitfalls
+	%img{src: 'images/pitfalls.jpg'}
+
+%section
+	%h2 Pitfalls
+	%ol
+		%li.fragment Thinking it's going to be easy-peasy-lemon-squeezy
+		%li.fragment <strike>You do not talk about Figh</strike> You have no idea what the destination environment is
+		%li.fragment Thinking too much in terms of "framework" features
+		%li.fragment
+			Dependencies conflicts. All the time.
+			%span.fragment ALL THE FUCKING TIME.
+
+%section
+	%h1 Cool story bro
+	%h2 but how?
+
+%section
+	%h1 Requirements
+	%ol
+		%li
+			%span Namespaces
+			%span.fragment Symfony\Foundation\How\The\Fuck\Do\People\Even\Remember\All\That
+		%li.fragment PSR all the things.
+		%li.fragment
+			%span Loosely-couple your dependencies<br>
+			%code.fragment "illuminate/support": "4.2.0"<br>
+			%code.fragment "illuminate/support": "4.2.*|5.0.*"
+
+%section
+	%h2 Writing agnostic packages is no different than writing front-end features
+	%h3.fragment Graceful degradation
+	%h3.fragment Progressive enhancement
+
+%section
+	%h1 Graceful degradation
+	%p.fragment When an escalator breaks, it's still stairs
+	%p.fragment Is when you'd rely on a set of features from the framework, and do your best so your package is usable if the freamwork doesn't have them
+
+%section
+	%h2 Example: migrations
+	%code.fragment whatevertisan migrate your/package
+	%pre.fragment
+		%code
+			$migrator = new Vendor\Package\Migrator($pdo);
+			$migrator->migrate();
+
+%section
+	%h2 Progressive enhancement
+	%p.fragment Adding an elevator next to a set of stairs
+	%p.fragment Building something that works for the ground up, and adding adaptators for the various frameworks
+
+%section
+	%h2 Example: service providers
+	%p.fragment Make your package work as is by just creating an instance, then add service providers that hooks those services into the framework
+	%pre.fragment
+		%code
+			:plain
+				class MyPackageServiceProvider extends ServiceProvider
+				{
+					public function register()
+					{
+						$this->package('vendor/package');
+
+						$this->app->singleton('command', 'Vendor\Package\MyCommand');
+						$this->commands('command');
+					}
+				}
+
+%section
+	%div.fragment
+		%h2 Those can be in the same repository
+		%img{:src => 'images/providers.png'}
+	%div.fragment
+		%h2 Or decicated repositories
+		%img{:src => 'images/repositories.png'}

@@ -1,0 +1,68 @@
+%section
+	%h1 Benefits and pitfalls of agnostic packages
+	%h2 and stuff
+
+%section
+	%h2 Who am I?
+	%img{:src => 'images/09.jpg'}
+	%ul
+		%li.fragment Maxime Fabre
+		%li.fragment French <em>(hon hon hon baguette)</em>
+		%li.fragment 24 years old
+		%li.fragment Working at <strong>Madewithlove</strong> since 08/2013
+
+	%aside.notes
+		%ul
+			%li First of all a quick look never worked with me before
+			%li My name is Maxime Fabre
+			%li I'm french, most important thing
+			%li In the middle age thingy
+			%li Here since about a year
+
+%section
+	%p Also known as "that guy that keeps bothering me about braces"
+	%pre
+		%code
+			:plain
+				class foo_BaR
+					{ var $FOOBAR = '_nope';
+					static protected function _please($sTap)         {
+						IF $sTap
+							ECHO "this" && 'is'."torture";;
+					}
+				}
+	%img{:src => 'images/nope.jpg'}
+
+	%aside.notes
+		%p May also know me PR reviewed, guy incredibly annoying about CS and PSR2 and stuff
+
+%section
+	%h1 (Framework) Agnostic packages
+	%ol
+		%li.fragment Packages that do not believe in one single framework.
+		%li.fragment Most packages are. Or not. I don't have any stats, really.
+		%li.fragment Multiple ways to achieve agnosticism (patterns)
+
+%section
+	%p More importantly<br>Agnostic is most of the cases the <strong>right way</strong> to do packages
+
+%section
+	%h1 Benefits
+	%img{:src => 'images/benefits.png'}
+
+%section
+	%h1 The obvious ones
+	%ol
+		%li.fragment
+			%p Wider audience:
+			%span.fragment Carebears
+			%span.fragment , Schrodingers
+			%span.fragment , The Rest
+		%li.fragment Not locked to a framework's release cycle
+		%li.fragment "wow much package very agnostic"
+
+%section
+	%h1 The totally-not-obvious-but-still-kind-of-nice ones
+	%ol
+		%li.fragment Intrinsinc respect of the SRP principles
+		%li.fragment Better understanding of how the various frameworks work

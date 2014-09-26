@@ -15,7 +15,7 @@ module.exports = function(grunt) {
 				livereload: true
 			},
 			reveal: {
-				files: ['config.yml', 'slides.md'],
+				files: ['config.yml', 'slides.haml'],
 				tasks: 'shell:reveal',
 			},
 		}

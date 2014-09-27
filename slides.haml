@@ -4,7 +4,7 @@
 
 	%aside.notes Worked on a few packages myself
 
-%section
+%section{'data-transition' => 'zoom'}
 	%h2 Who am I?
 	%img{:src => 'images/09.jpg'}
 	%ul
@@ -35,8 +35,7 @@
 				}
 	%img{:src => 'images/nope.jpg'}
 
-	%aside.notes
-		%p May also know me PR reviewed, guy incredibly annoying about CS and PSR2 and stuff
+	%aside.notes May also know me PR reviewed, guy incredibly annoying about CS and PSR2 and stuff
 
 %section
 	%h1 (Framework) Agnostic packages
@@ -48,6 +47,7 @@
 	%aside.notes
 		%ul
 			%li Never heard the term, here comes
+			%li Packages believe PHP ecosystem
 			%li Don't know, mostly symfony bundles
 			%li Multiple ways, we'll review them
 
@@ -67,9 +67,9 @@
 	%ol
 		%li.fragment
 			%p Wider audience
-			%span.fragment Carebears
-			%span.fragment , Schrodingers
-			%span.fragment , The Rest
+			%span.fragment.roll-in> Carebears
+			%span.fragment.roll-in> , Schrodingers
+			%span.fragment.roll-in> , The Rest
 		%li.fragment Not locked to a framework's release cycle
 		%li.fragment "wow much package very agnostic"
 
@@ -186,8 +186,10 @@
 		%h2 Or decicated repositories
 		%img{:src => 'images/repositories.png'}
 
+	%aside.notes Prefer latter, symfony structure
+
 %section
-	%p Must only soften the experience, not change it
+	%p Must only better the experience, not change it
 	%p.fragment If half of your features can only be used on framework X, rethink the package
 
 %section

@@ -28,7 +28,8 @@
 			:plain
 				class foo_BaR
 					{ var $FOOBAR = '_nope';
-					static protected function _please($sTap)         {
+					static
+					PROTECTED     function  _please( $sTap  )         {
 						IF $sTap
 							ECHO "this" && 'is'."torture";;
 					}
@@ -53,6 +54,10 @@
 
 %section
 	%p More importantly<br>Agnostic is most of the cases the <strong>right way</strong> to do packages
+	%blockquote.fragment(cite="Phil Sturgeon")
+		:plain
+			We need to remember to work together instead of fragmenting the community, siloing it with framework specific resources that have no reason to exist.<br>
+			-- Phil Sturgeon
 
 	%aside.notes There are exceptions. Not thinking outside box
 
@@ -77,7 +82,7 @@
 		%ul
 			%li CB you do care for, test on them, can't unit test, major ones
 			%li SD don't know, fingers crossed
-			%li Rest microframeworks/components etc
+			%li Rest microframeworks/pseudoframeworks etc
 			%li Not locked Laravel 4.1/4.2 type hint
 			%li brag r/php
 
@@ -93,7 +98,7 @@
 
 	%aside.notes
 		%ul
-			%li Can't rely on transports or classes
+			%li Can't rely on transports or classes, decouple code
 			%li Have to learn how works (sessions etc)
 			%li mix match packages
 			%li do your own thing
@@ -132,8 +137,8 @@
 		%li.fragment PSR all the things.
 		%li.fragment
 			%span Loosely-couple your dependencies<br>
-			%code.fragment "illuminate/support": "4.2.0"<br>
-			%code.fragment "illuminate/support": "4.2.*|5.0.*"
+			%code.fragment "illuminate/support": <span style="color: tomato">"4.2.0"<br></span>
+			%code.fragment "illuminate/support": <span style="color: palegreen">"4.2.*|5.0.*"</span>
 
 %section
 	%h2 Writing agnostic packages is no different than writing front-end features
@@ -141,64 +146,77 @@
 	%h3.fragment Progressive enhancement
 
 %section
-	%h1 Graceful degradation
-	%p.fragment When an escalator breaks, it's still stairs
-	%p.fragment Is when you'd rely on a set of features from the framework, and do your best so your package is usable if the freamwork doesn't have them
+	%section
+		%h1 Graceful degradation
+		%blockquote.fragment When an escalator breaks, it's still stairs
+		%p.fragment Relying on a set of features from the frameworks, and doing your best so your package is usable if the freamwork doesn't have them
+
+	%section
+		%h2 Example: migrations
+		%div.fragment
+			%p Expectation: a given framework has a CLI and migrations
+			%code whatevertisan migrate your/package
+		%pre.fragment
+			%code
+				$migrator = new Vendor\Package\Migrator($pdo);
+				$migrator->migrate();
+
+	%section
+		%h1
+			%span.fragment.roll-in Soften
+			%span.fragment.roll-in the
+			%span.fragment.roll-in fall
 
 %section
-	%h2 Example: migrations
-	%code.fragment whatevertisan migrate your/package
-	%pre.fragment
-		%code
-			$migrator = new Vendor\Package\Migrator($pdo);
-			$migrator->migrate();
+	%section
+		%h2 Progressive enhancement
+		%blockquote.fragment Adding an elevator next to a set of stairs
+		%p.fragment Building something that works from the ground up, and adding adaptators for the various frameworks
 
-%section
-	%p Soften the fall
-
-%section
-	%h2 Progressive enhancement
-	%p.fragment Adding an elevator next to a set of stairs
-	%p.fragment Building something that works for the ground up, and adding adaptators for the various frameworks
-
-%section
-	%h2 Service providers
-	%p.fragment Make your package work as is by just creating an instance, then add service providers that hook those services into the framework
-	%pre.fragment
-		%code
-			:plain
-				class MyPackageServiceProvider extends ServiceProvider
-				{
-					public function register()
+	%section
+		%h2 Service providers
+		%p.fragment Make your package work as is by just creating an instance, then add service providers that hook those services into the framework
+		%pre.fragment
+			%code
+				:plain
+					class MyPackageServiceProvider extends ServiceProvider
 					{
-						$this->package('vendor/package');
+						public function register()
+						{
+							$this->package('vendor/package');
 
-						$this->app->singleton('migrate', 'Vendor\Package\MigrateCommand');
-						$this->commands('migrate');
+							$this->app->singleton('migrate', 'Vendor\Package\MigrateCommand');
+							$this->commands('migrate');
+						}
 					}
-				}
+
+	%section
+		%div.fragment
+			%h2 Those can be in the same repository
+			%img(src='images/providers.png')
+		%div.fragment
+			%h2 Or decicated repositories
+			%img(src='images/repositories.png')
+
+		%aside.notes Prefer latter, symfony structure
+
+	%section
+		%p Must only better the experience, <strong>not change it</strong>
+		%p.fragment If half of your features can only be used on framework X, rethink the package
 
 %section
-	%div.fragment
-		%h2 Those can be in the same repository
-		%img{:src => 'images/providers.png'}
-	%div.fragment
-		%h2 Or decicated repositories
-		%img{:src => 'images/repositories.png'}
-
-	%aside.notes Prefer latter, symfony structure
-
-%section
-	%p Must only better the experience, not change it
-	%p.fragment If half of your features can only be used on framework X, rethink the package
+	%h1 Summary
+	%h3.fragment Graceful degradation is working <span style="color: lightgreen">top to bottom</span>
+	%h3.fragment Progressive enhancement is working <span style="color: lightgreen">bottom to top</span>
+	%p.fragment Same idea than desktop-first/mobile-first design
 
 %section
 	%h2 Nihilist approach
-	%img{:src => 'images/nihilists.jpg'}
-	%p.fragment Just, like, do your package barebones and fuck this shit
+	%img(src='images/nihilists.jpg')
+	%p.fragment Just, like, do your package barebones and fuck this shit, let people do the work
 
 %section
-	%img{:src => 'images/end.jpg'}
+	%img(src='images/end.jpg')
 
 %section
 	%ul
